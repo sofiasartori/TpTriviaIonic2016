@@ -30,6 +30,12 @@
   font-weight: normal;
   font-style: normal; }
 
+  @font-face {
+  font-family: "SinkinSans";
+  src: url("../fonts/SinkinSans-400Regular.otf");
+  font-weight: normal;
+  font-style: normal; }
+
 .ion, .ionicons,
 .ion-alert:before,
 .ion-alert-circled:before,
@@ -3005,7 +3011,8 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
-  font: inherit;
+  /*font: inherit;*/
+  font-family: 'SinkinSans';
   font-size: 100%; }
 
 ol, ul {
@@ -3924,11 +3931,13 @@ a.subdued {
       background-image: linear-gradient(180deg, #ddd, #ddd 50%, transparent 50%); }
   .bar.bar-stable {
     border-color: #b2b2b2;
+    /*background-color: #f8f8f8;
+    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);*/
     background-color: #f8f8f8;
-    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
-    color: #444; }
+    background-image: linear-gradient(#0e3038, #0b677d);
+    color: #fff; }
     .bar.bar-stable .title {
-      color: #444; }
+      color: #fff; }
     .bar.bar-stable.bar-footer {
       background-image: linear-gradient(180deg, #b2b2b2, #b2b2b2 50%, transparent 50%); }
   .bar.bar-positive {
@@ -4353,10 +4362,13 @@ a.subdued {
   justify-content: center;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  border-color: #b2b2b2;
   background-color: #f8f8f8;
+  background-image: linear-gradient(#0e3038, #0b677d);
+  color: #fff;
+  border-color: #b2b2b2;
+  /*background-color: #f8f8f8;
   background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
-  color: #444;
+  color: #444;*/
   position: absolute;
   bottom: 0;
   z-index: 5;
@@ -4364,7 +4376,7 @@ a.subdued {
   height: 49px;
   border-style: solid;
   border-top-width: 1px;
-  background-size: 0;
+  /*background-size: 0;*/
   line-height: 49px; }
   .tabs .tab-item .badge {
     background-color: #444;
@@ -4990,9 +5002,9 @@ ion-tabs.tabs-striped.tabs-color-active-stable .tab-item.tab-item-active, ion-ta
   color: #f8f8f8; }
 
 ion-tabs.tabs-color-active-positive .tab-item {
-  color: #444; }
+  color: #fffadc; }
   ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
-    color: #387ef5; }
+    color: #fffadc; }
 
 ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.activated {
   border-color: #387ef5;
@@ -7547,7 +7559,8 @@ input,
 button,
 select,
 textarea {
-  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
+  /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
+  font-family: 'SinkinSans'; }
 
 .item-input {
   display: -webkit-box;

@@ -1,6 +1,11 @@
 angular.module('starter.controllers', [])
 
-.controller('MiCuentaCtrl', function($scope) {})
+.controller('MiCuentaCtrl', function($scope) {
+  $scope.Ingresar = function(){
+    console.log("usuario: " + $scope.usuario);
+  }
+
+})
 
 .controller('TriviaCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
