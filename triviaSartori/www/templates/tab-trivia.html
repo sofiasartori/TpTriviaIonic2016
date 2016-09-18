@@ -47,9 +47,9 @@
     <img src="img/atom.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
     <label style="margin-left:2%;">Cu&aacute;l es el n&uacute;mero at&oacute;mico del Hidr&oacute;geno?</label><br><br>
     <div style="text-align:center;">
-      <button class="button button-small {{colorBoton}}" ng-click="Correcto">1</button><br><br>
-      <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">24</button><br><br>
-      <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">12</button>
+      <button class="button button-small {{colorBoton}}" ng-click="Correcto()">1</button><br><br>
+      <button ng-click="Incorrecto()" class="button button-small {{colorBoton}}" ng-class="{'clicked': class == 'boton1'}">24</button><br><br>
+      <button ng-click="Incorrecto()" class="button button-small {{colorBoton}}">12</button>
     </div>
   </ion-content>
 </ion-view>

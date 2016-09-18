@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
 .controller('MiCuentaCtrl', function($scope) {
   $scope.Ingresar = function(){
@@ -7,7 +7,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('TriviaCtrl', function($scope, Chats) {
+.controller('TriviaCtrl', function($scope, Chats, $cordovaVibration, $cordovaNativeAudio) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -21,14 +21,19 @@ angular.module('starter.controllers', [])
     Chats.remove(chat);
   };*/
   $scope.colorBoton = "button-energized";
+  $cordovaNativeAudio.preloadSimple('correcto', 'sounds/correct.mp3');
+  $cordovaNativeAudio.preloadSimple('incorrecto', 'sounds/wrong.mp3');
 
   $scope.Incorrecto = function(){
-    console.log("holaboton");
     $scope.colorBoton = "button-assertive";
+    $cordovaVibration.vibrate([100, 300, 100]);
+    $cordovaNativeAudio.play('incorrecto');
   }
 
   $scope.Correcto=function(){
     $scope.colorBoton="button-balanced";
+    $cordovaVibration.vibrate(100);
+    $cordovaNativeAudio.play('correcto');
   }
 })
 
