@@ -6,12 +6,12 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
   <!-- Dashboard Tab -->
-  <ion-tab title="Mi cuenta" icon-off="ion-person" icon-on="ion-person" href="#/tab/micuenta">
+  <ion-tab title="Mi cuenta" icon-off="ion-person" icon-on="ion-person" href="#/tab/micuenta" disabled="getLogueado()">
     <ion-nav-view name="tab-miCuenta"></ion-nav-view>
   </ion-tab>
 
   <!-- Chats Tab -->
-  <ion-tab title="Trivia" icon-off="ion-ios-game-controller-b-outline" icon-on="ion-ios-game-controller-b" href="#/tab/trivia">
+  <ion-tab title="Trivia" icon-off="ion-ios-game-controller-b-outline" icon-on="ion-ios-game-controller-b" href="#/tab/trivia" disabled="!getLogueado()">
     <ion-nav-view name="tab-trivia"></ion-nav-view>
   </ion-tab>
 

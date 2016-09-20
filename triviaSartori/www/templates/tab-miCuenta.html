@@ -1,7 +1,9 @@
-<ion-view view-title="Mi cuenta" style="padding-top:5px;">
+<ion-view view-title="Mi cuenta">
   <ion-content class="padding">
-  <img src="img/person-flat.png" style="padding-left:12%;">           
-  <input type="text" id="usuario" style="margin-left:3%;" placeholder="usuario" style="text-align:center;"><br>
-  <button ng-click="Ingresar()" class="button button-assertive" style="top: 10% !important; left:35% !important;">Iniciar Sesi&oacute;n</button>
+  <img src="img/person-flat.png" style="padding-left:15%;">
+    <div style="padding-left:25%;">            
+      <input type="text" id="usuario" placeholder="usuario" style="text-align:center;" ng-model="form.usuario"><br>
+    </div>
+    <button ng-click="Ingresar()" class="button button-assertive" style="top: 10% !important; left:33% !important;">Iniciar Sesi&oacute;n</button>
   </ion-content>
 </ion-view>

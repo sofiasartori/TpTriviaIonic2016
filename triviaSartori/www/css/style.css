@@ -1,1 +1,13 @@
 /* Empty. Add your own CSS if you like */
+.red-btn {
+    background-color:red;
+}
+.red-btn :active{
+    background-color:red;
+}
+.blue-btn{
+    background-color:blue;
+}
+.blue-btn:active{
+    background-color:blue;
+}

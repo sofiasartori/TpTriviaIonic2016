@@ -1,5 +1,5 @@
 <ion-view view-title="Trivia">
-  <ion-content>
+  <ion-content style="background-image: linear-gradient(#0e3038, #0b677d);">
     <!--<ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
         <img ng-src="{{chat.face}}">
@@ -12,58 +12,44 @@
         </ion-option-button>
       </ion-item>
     </ion-list>-->
-    <div id="pregunta1" style="display:none;">
-      <img src="img/flower.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
-      <label style="margin-left:2%;">La parte masculina de una flor se llama...</label><br>
-      <div style="text-align:center;">
-        <button class="button button-small {{colorBoton}}" ng-click="Incorrecto">Estigma</button><br><br>
-        <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">Pistilo</button><br><br>
-        <button ng-click="Correcto" class="button button-small {{colorBoton}}">Estambre</button>
-      </div>
-    </div>
-    <div id="pregunta2" style="display:none;">
-      <img src="img/programming.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
-      <label style="margin-left:2%;">Cu&aacute;l de estos lenguajes de programaci&oacute;n fue inventado en los laboratorios Bell?</label><br><br>
-      <div style="text-align:center;">
-        <button class="button button-small {{colorBoton}}" ng-click="Correcto">C</button><br><br>
-        <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">BASIC</button><br><br>
-        <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">COBOL</button>
-      </div>
-    </div>
-    <div id="pregunta3" style="display:none;">
-      <img src="img/stars.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
-      <label style="margin-left:2%;">C&oacute;mo se llama la escala que mide el brillo de las estrellas?</label><br><br>
-      <div style="text-align:center;">
-        <button class="button button-small {{colorBoton}}" ng-click="Correcto">Magnitud</button><br><br>
-        <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">Alboreda</button><br><br>
-        <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">Densidad</button>
-      </div>
-    </div>
-    <div id="pregunta4" style="display:none;">
-      <img src="img/higrometro.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
-      <label style="margin-left:2%;">Qu&eacute; mide un higr&oacute;metro?</label><br><br>
-      <div style="text-align:center;">
-        <button class="button button-small {{colorBoton}}" ng-click="Incorrecto">Terremotos</button><br><br>
-        <button ng-click="Correcto" class="button button-small {{colorBoton}}">Humedad</button><br><br>
-        <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">Presi&oacute;n</button>
-      </div>
-    </div>
-    <div id="pregunta5" style="display:none;">
-      <img src="img/atom.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
-      <label style="margin-left:2%;">Cu&aacute;l es el n&uacute;mero at&oacute;mico del Hidr&oacute;geno?</label><br><br>
-      <div style="text-align:center;">
-        <button class="button button-small {{colorBoton}}" ng-click="Correcto()">1</button><br><br>
-        <button ng-click="Incorrecto()" class="button button-small {{colorBoton}}">24</button><br><br>
-        <button ng-click="Incorrecto()" class="button button-small {{colorBoton}}">12</button>
-      </div>
-    </div>
-    <div id="pregunta6" style="display:none;">
-      <img src="img/sun.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
-      <label style="margin-left:2%;">Qu&eacute; tipo de radiaci&oacute;n broncea a la gente?</label><br><br>
-      <div style="text-align:center;">
-        <button class="button button-small {{colorBoton}}" ng-click="Incorrecto()">Infrarroja</button><br><br>
-        <button ng-click="Incorrecto()" class="button button-small {{colorBoton}}">Gamma</button><br><br>
-        <button ng-click="Correcto()" class="button button-small {{colorBoton}}">Ultravioleta</button>
+    <!--<img src="img/flower.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
+    <label style="margin-left:2%;">La parte masculina de una flor se llama...</label><br>
+    <div style="text-align:center;">
+      <button class="button button-small {{colorBoton}}" ng-click="Incorrecto">Estigma</button><br><br>
+      <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">Pistilo</button><br><br>
+      <button ng-click="Correcto" class="button button-small {{colorBoton}}">Estambre</button>
+    </div>-->
+
+    <!--<img src="img/programming.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
+    <label style="margin-left:2%;">Cu&aacute;l de estos lenguajes de programaci&oacute;n fue inventado en los laboratorios Bell?</label><br><br>
+    <div style="text-align:center;">
+      <button class="button button-small {{colorBoton}}" ng-click="Correcto">C</button><br><br>
+      <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">BASIC</button><br><br>
+      <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">COBOL</button>
+    </div>-->
+
+    <!--<img src="img/stars.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
+    <label style="margin-left:2%;">C&oacute;mo se llama la escala que mide el brillo de las estrellas?</label><br><br>
+    <div style="text-align:center;">
+      <button class="button button-small {{colorBoton}}" ng-click="Correcto">Magnitud</button><br><br>
+      <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">Alboreda</button><br><br>
+      <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">Densidad</button>
+    </div>-->
+
+    <!--<img src="img/higrometro.jpg" style="width:200px; margin-top:15%; margin-left:20%;"><br>
+    <label style="margin-left:2%;">Qu&eacute; mide un higr&oacute;metro?</label><br><br>
+    <div style="text-align:center;">
+      <button class="button button-small {{colorBoton}}" ng-click="Incorrecto">Terremotos</button><br><br>
+      <button ng-click="Correcto" class="button button-small {{colorBoton}}">Humedad</button><br><br>
+      <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">Presi&oacute;n</button>
+    </div>-->
+
+    <div data-ng-repeat="img in ctrl.preguntas[ctrl.preguntaActual].img" style="width:200px; margin-top:15%; margin-left:20%;"></div><br>
+    <label style="margin-left:2%;">{{ctrl.preguntas[ctrl.preguntaActual].descripcionPregunta}}</label><br><br>
+    <div style="text-align:center;">
+      <div data-ng-repeat="pregunta in ctrl.preguntas[ctrl.preguntaActual].respuestas">
+        <button class="button button-small" ng-class="{'red-btn':ctrl.preguntaSeleccionada === pregunta, 'blue-btn' :ctrl.preguntaSeleccionada !== pregunta  }"
+          ng-click="ctrl.siguiente(pregunta)">{{pregunta.name}}</button><br><br>
       </div>
     </div>
   </ion-content>
