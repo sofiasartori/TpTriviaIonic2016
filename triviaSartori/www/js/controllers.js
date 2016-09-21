@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ionic'])
+angular.module('starter.controllers', ['ionic', 'ngCordova'])
   .factory('login', function () {
     var logueado = false;
     var login = {};
@@ -38,7 +38,7 @@ angular.module('starter.controllers', ['ionic'])
   }])
 
   .controller('TriviaCtrl', [
-    '$scope', '$state', 'login', "$ionicPopup", function ($scope, $state, login, $ionicPopup) {
+    '$scope', '$state', 'login', "$ionicPopup", '$cordovaVibration', '$cordovaNativeAudio', function ($scope, $state, login, $ionicPopup, $cordovaVibration, $cordovaNativeAudio) {
       // With the new view caching in Ionic, Controllers are only called
       // when they are recreated or on app start, instead of every page change.
       // To listen for when this page is active (for example, to refresh data),
@@ -51,16 +51,20 @@ angular.module('starter.controllers', ['ionic'])
       $scope.remove = function(chat) {
         Chats.remove(chat);
       };*/
+
+      $cordovaNativeAudio.preloadSimple('inc', 'sounds/wrong.mp3');
+      $cordovaNativeAudio.preloadSimple('corr', 'sounds/correct.mp3');
       var ctrl = $scope.ctrl = {};
       ctrl.preguntaActual = 0;
-      ctrl.preguntasCorrectas = 0;
-      ctrl.preguntaSeleccionada = null;
-      ctrl.siguiente = function (pregunta) {
-        ctrl.preguntaSeleccionada = pregunta;
-        if (pregunta.active) {
-          ctrl.preguntasCorrectas++;
+      ctrl.respuestasCorrectas = 0;
+      ctrl.respuestaSeleccionada = null;
+      ctrl.siguiente = function (respuesta) {
+        ctrl.respuestaSeleccionada = respuesta;
+        if (respuesta.active) {
+          ctrl.respuestasCorrectas++;
+          $scope.Correcto();
         } else {
-
+          $scope.Incorrecto();  
         }
         if (ctrl.preguntaActual == 6) {
           $scope.showAlert();
@@ -71,25 +75,28 @@ angular.module('starter.controllers', ['ionic'])
       $scope.showAlert = function () {
         var alertPopup = $ionicPopup.alert({
           title: 'Trivia',
-          template: 'Preguntas correctas: ' + ctrl.preguntasCorrectas
+          template: 'Respuestas correctas: ' + ctrl.respuestasCorrectas
         });
       }
       ctrl.preguntas = [{
         pregunta: 1,
-        img: '<img src="img/higrometro.jpg" style="width:200px; margin-top:15%; margin-left:20%;">',
+        img: 'img/atom.jpg',
         descripcionPregunta: "Cual es el numero at\u00f3mico del hidr\u00f3geno?",
         respuestas: [{
           id: 1,
           name: '1',
-          active: true
+          active: true,
+          func:'Correcto()'
         }, {
             id: 2,
             name: '24',
-            active: false
+            active: false,
+            func: 'Incorrecto()'
           }, {
             id: 3,
             name: '12',
-            active: false
+            active: false,
+            func: 'Incorrecto()'
           }]
       }, {
           pregunta: 2,
@@ -98,15 +105,18 @@ angular.module('starter.controllers', ['ionic'])
           respuestas: [{
             id: 1,
             name: 'C',
-            active: true
+            active: true,
+            func:'Correcto()'
           }, {
               id: 2,
               name: 'Basic',
-              active: false
+              active: false,
+              func: 'Incorrecto()'
             }, {
               id: 3,
               name: 'Cobol',
-              active: false
+              active: false,
+              func: 'Incorrecto()'
             }]
         }, {
           pregunta: 3,
@@ -115,15 +125,18 @@ angular.module('starter.controllers', ['ionic'])
           respuestas: [{
             id: 1,
             name: 'Infrarrojo',
-            active: false
+            active: false,
+            func: 'Incorrecto()'
           }, {
               id: 2,
               name: 'Gamma',
-              active: false
+              active: false,
+              func: 'Incorrecto()'
             }, {
               id: 3,
               name: 'Ultravioleta',
-              active: true
+              active: true,
+              func:'Correcto()'
             }]
         }, {
           pregunta: 4,
@@ -132,15 +145,18 @@ angular.module('starter.controllers', ['ionic'])
           respuestas: [{
             id: 1,
             name: 'Magnitud',
-            active: true
+            active: true,
+            func:'Correcto()'
           }, {
               id: 2,
               name: 'Alboreda',
-              active: false
+              active: false,
+              func: 'Incorrecto()'
             }, {
               id: 3,
               name: 'Densidad',
-              active: false
+              active: false,
+              func: 'Incorrecto()'
             }]
         },
         {
@@ -150,15 +166,18 @@ angular.module('starter.controllers', ['ionic'])
           respuestas: [{
             id: 1,
             name: 'Transformador',
-            active: false
+            active: false,
+            func: 'Incorrecto()'
           }, {
               id: 2,
               name: 'Inductor',
-              active: false
+              active: false,
+              func: 'Incorrecto()'
             }, {
               id: 3,
               name: 'Capacitor',
-              active: true
+              active: true,
+              func:'Correcto()'
             }]
         },
         {
@@ -168,15 +187,18 @@ angular.module('starter.controllers', ['ionic'])
           respuestas: [{
             id: 1,
             name: 'Terremotos',
-            active: false
+            active: false,
+            func: 'Incorrecto()'
           }, {
               id: 2,
               name: 'Humedad',
-              active: true
+              active: true,
+              func:'Correcto()'
             }, {
               id: 3,
               name: 'Presion',
-              active: false
+              active: false,
+              func: 'Incorrecto()'
             }]
         },
         {
@@ -186,29 +208,32 @@ angular.module('starter.controllers', ['ionic'])
           respuestas: [{
             id: 1,
             name: 'Estigma',
-            active: false
+            active: false,
+            func: 'Incorrecto()'
           }, {
               id: 2,
               name: 'Pistillo',
-              active: false
+              active: false,
+              func: 'Incorrecto()'
             }, {
               id: 3,
               name: 'Estambre',
-              active: false
+              active: true,
+              func:'Correcto()'
             }]
         }
       ];
-      $scope.colorBoton = "button-energized";
-      $scope.color1 = "blue";
-      $scope.color2 = "blue";
-      $scope.color3 = "blue";
+      
       $scope.Incorrecto = function () {
         console.log("holaboton");
-        $scope.color1 = "red";
+        $cordovaVibration.vibrate([100, 50, 100]);
+        $cordovaNativeAudio.play('inc');
+
       }
 
       $scope.Correcto = function () {
-        $scope.colorBoton = "button-balanced";
+        $cordovaNativeAudio.play('corr');
+        $cordovaVibration.vibrate(100);
       }
     }])
 

@@ -44,12 +44,12 @@
       <button ng-click="Incorrecto" class="button button-small {{colorBoton}}">Presi&oacute;n</button>
     </div>-->
 
-    <div data-ng-repeat="img in ctrl.preguntas[ctrl.preguntaActual].img" style="width:200px; margin-top:15%; margin-left:20%;"></div><br>
+    <img ng-src="{{ctrl.preguntas[ctrl.preguntaActual].img}}" style="width:200px; margin-top:15%; margin-left:20%;"><br>
     <label style="margin-left:2%;">{{ctrl.preguntas[ctrl.preguntaActual].descripcionPregunta}}</label><br><br>
     <div style="text-align:center;">
-      <div data-ng-repeat="pregunta in ctrl.preguntas[ctrl.preguntaActual].respuestas">
-        <button class="button button-small" ng-class="{'red-btn':ctrl.preguntaSeleccionada === pregunta, 'blue-btn' :ctrl.preguntaSeleccionada !== pregunta  }"
-          ng-click="ctrl.siguiente(pregunta)">{{pregunta.name}}</button><br><br>
+      <div data-ng-repeat="respuesta in ctrl.preguntas[ctrl.preguntaActual].respuestas">
+        <button class="button button-small button-energized" ng-class="{'red-btn':ctrl.respuestaSeleccionada === respuesta, 'blue-btn' :ctrl.respuestaSeleccionada !== respuesta}"
+          ng-click="ctrl.siguiente(respuesta); {'Correcto()':ctrl.respuestaSeleccionada === respuesta, 'Incorrecto()' :ctrl.respuestaSeleccionada !== respuesta}">{{respuesta.name}}</button><br><br>
       </div>
     </div>
   </ion-content>
