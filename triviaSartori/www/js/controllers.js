@@ -54,10 +54,13 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
 
       $cordovaNativeAudio.preloadSimple('inc', 'sounds/wrong.mp3');
       $cordovaNativeAudio.preloadSimple('corr', 'sounds/correct.mp3');
+      
+
       var ctrl = $scope.ctrl = {};
       ctrl.preguntaActual = 0;
       ctrl.respuestasCorrectas = 0;
       ctrl.respuestaSeleccionada = null;
+      var baseDatos = new Firebase("https://triviaionic-114c5.firebaseio.com/");
       ctrl.siguiente = function (respuesta) {
         ctrl.respuestaSeleccionada = respuesta;
         if (respuesta.active) {
@@ -71,6 +74,11 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
         }
         ctrl.preguntaActual++;
 
+        
+        var question = ctrl.preguntaActual;
+        var selectedAnswer = ctrl.respuestaSeleccionada.name;
+        console.log(question + selectedAnswer);
+        baseDatos.push({pregunta: question, respuesta: selectedAnswer});
       }
       $scope.showAlert = function () {
         var alertPopup = $ionicPopup.alert({
@@ -85,18 +93,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
         respuestas: [{
           id: 1,
           name: '1',
-          active: true,
-          func:'Correcto()'
+          active: true
         }, {
             id: 2,
             name: '24',
-            active: false,
-            func: 'Incorrecto()'
+            active: false
           }, {
             id: 3,
             name: '12',
-            active: false,
-            func: 'Incorrecto()'
+            active: false
           }]
       }, {
           pregunta: 2,
@@ -105,18 +110,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
           respuestas: [{
             id: 1,
             name: 'C',
-            active: true,
-            func:'Correcto()'
+            active: true
           }, {
               id: 2,
               name: 'Basic',
-              active: false,
-              func: 'Incorrecto()'
+              active: false
             }, {
               id: 3,
               name: 'Cobol',
-              active: false,
-              func: 'Incorrecto()'
+              active: false
             }]
         }, {
           pregunta: 3,
@@ -125,18 +127,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
           respuestas: [{
             id: 1,
             name: 'Infrarrojo',
-            active: false,
-            func: 'Incorrecto()'
+            active: false
           }, {
               id: 2,
               name: 'Gamma',
-              active: false,
-              func: 'Incorrecto()'
+              active: false
             }, {
               id: 3,
               name: 'Ultravioleta',
-              active: true,
-              func:'Correcto()'
+              active: true
             }]
         }, {
           pregunta: 4,
@@ -145,18 +144,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
           respuestas: [{
             id: 1,
             name: 'Magnitud',
-            active: true,
-            func:'Correcto()'
+            active: true
           }, {
               id: 2,
               name: 'Alboreda',
-              active: false,
-              func: 'Incorrecto()'
+              active: false
             }, {
               id: 3,
               name: 'Densidad',
-              active: false,
-              func: 'Incorrecto()'
+              active: false
             }]
         },
         {
@@ -166,18 +162,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
           respuestas: [{
             id: 1,
             name: 'Transformador',
-            active: false,
-            func: 'Incorrecto()'
+            active: false
           }, {
               id: 2,
               name: 'Inductor',
-              active: false,
-              func: 'Incorrecto()'
+              active: false
             }, {
               id: 3,
               name: 'Capacitor',
-              active: true,
-              func:'Correcto()'
+              active: true            
             }]
         },
         {
@@ -187,18 +180,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
           respuestas: [{
             id: 1,
             name: 'Terremotos',
-            active: false,
-            func: 'Incorrecto()'
+            active: false
           }, {
               id: 2,
               name: 'Humedad',
-              active: true,
-              func:'Correcto()'
+              active: true
             }, {
               id: 3,
               name: 'Presion',
-              active: false,
-              func: 'Incorrecto()'
+              active: false
             }]
         },
         {
@@ -208,18 +198,15 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
           respuestas: [{
             id: 1,
             name: 'Estigma',
-            active: false,
-            func: 'Incorrecto()'
+            active: false
           }, {
               id: 2,
               name: 'Pistillo',
-              active: false,
-              func: 'Incorrecto()'
+              active: false
             }, {
               id: 3,
               name: 'Estambre',
-              active: true,
-              func:'Correcto()'
+              active: true
             }]
         }
       ];
