@@ -38,7 +38,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   }])
 
   .controller('TriviaCtrl', [
-    '$scope', '$state', 'login', "$ionicPopup", '$cordovaVibration', '$cordovaNativeAudio', function ($scope, $state, login, $ionicPopup, $cordovaVibration, $cordovaNativeAudio) {
+    '$scope', '$state', 'login', "$ionicPopup", '$cordovaVibration', '$cordovaNativeAudio', '$cordovaFile', function ($scope, $state, login, $ionicPopup, $cordovaVibration, $cordovaNativeAudio, $cordovaFile) {
       // With the new view caching in Ionic, Controllers are only called
       // when they are recreated or on app start, instead of every page change.
       // To listen for when this page is active (for example, to refresh data),
@@ -78,7 +78,10 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
         var question = ctrl.preguntaActual;
         var selectedAnswer = ctrl.respuestaSeleccionada.name;
         console.log(question + selectedAnswer);
-        baseDatos.push({pregunta: question, respuesta: selectedAnswer});
+        var entrada = {pregunta: question, respuesta: selectedAnswer}
+        baseDatos.push(entrada);
+        $cordovaFile.createFile('file:///Android/data/com.ionicframework.triviasartori171496/files', "pyr", true);
+        //$cordovaFile.writeFile(cordova.file.dataDirectory, "pyr", JSON.stringify(entrada), true)
       }
       $scope.showAlert = function () {
         var alertPopup = $ionicPopup.alert({
