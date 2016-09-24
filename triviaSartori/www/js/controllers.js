@@ -61,6 +61,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       ctrl.respuestasCorrectas = 0;
       ctrl.respuestaSeleccionada = null;
       var baseDatos = new Firebase("https://triviaionic-114c5.firebaseio.com/");
+      $cordovaFile.createFile(cordova.file.dataDirectory, "pyr.txt", true);
       ctrl.siguiente = function (respuesta) {
         ctrl.respuestaSeleccionada = respuesta;
         if (respuesta.active) {
@@ -77,11 +78,12 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
         
         var question = ctrl.preguntaActual;
         var selectedAnswer = ctrl.respuestaSeleccionada.name;
-        console.log(question + selectedAnswer);
         var entrada = {pregunta: question, respuesta: selectedAnswer}
         baseDatos.push(entrada);
-        $cordovaFile.createFile('file:///Android/data/com.ionicframework.triviasartori171496/files', "pyr", true);
-        //$cordovaFile.writeFile(cordova.file.dataDirectory, "pyr", JSON.stringify(entrada), true)
+        
+        
+        $cordovaFile.writeFile(cordova.file.dataDirectory, "pyr.txt", JSON.stringify(entrada), true);
+        console.log(JSON.stringify($cordovaFile.readAsText(cordova.file.dataDirectory, "pyr.txt")));
       }
       $scope.showAlert = function () {
         var alertPopup = $ionicPopup.alert({
