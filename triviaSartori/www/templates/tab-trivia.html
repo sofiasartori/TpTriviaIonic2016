@@ -2,7 +2,7 @@
   <ion-content style="background-image: linear-gradient(#0e3038, #0b677d);">
     <div ng-if="mostrarPreguntas">
     <img ng-src="{{ctrl.preguntas[ctrl.preguntaActual].img}}" style="width:200px; margin-top:15%; margin-left:20%;"><br>
-    <label style="margin-left:2%;">{{ctrl.preguntas[ctrl.preguntaActual].descripcionPregunta}}</label><br><br>
+    <h2 style="margin-left:2%; text-align:center; color:white;">{{ctrl.preguntas[ctrl.preguntaActual].descripcionPregunta}}</h2><br><br>
     <div style="text-align:center;">
       <div data-ng-repeat="respuesta in ctrl.preguntas[ctrl.preguntaActual].respuestas">
         <button class="button button-small button-energized" ng-class="{'button-assertive':ctrl.respuestaSeleccionada === respuesta, 'button-calm' :ctrl.respuestaSeleccionada !== respuesta}"
