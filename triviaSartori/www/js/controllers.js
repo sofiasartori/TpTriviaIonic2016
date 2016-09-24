@@ -38,7 +38,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
   }])
 
   .controller('TriviaCtrl', [
-    '$scope', '$state', 'login', "$ionicPopup", '$cordovaVibration', '$cordovaNativeAudio', '$cordovaFile', function ($scope, $state, login, $ionicPopup, $cordovaVibration, $cordovaNativeAudio, $cordovaFile) {
+    '$scope', '$state', 'login', "$ionicPopup", '$cordovaVibration', '$cordovaNativeAudio',
+     '$cordovaFile', function ($scope, $state, login, $ionicPopup, $cordovaVibration, $cordovaNativeAudio, $cordovaFile) {
       // With the new view caching in Ionic, Controllers are only called
       // when they are recreated or on app start, instead of every page change.
       // To listen for when this page is active (for example, to refresh data),
@@ -51,18 +52,21 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       $scope.remove = function(chat) {
         Chats.remove(chat);
       };*/
-
+      $scope.fileName = 'data2.json'
       $cordovaNativeAudio.preloadSimple('inc', 'sounds/wrong.mp3');
       $cordovaNativeAudio.preloadSimple('corr', 'sounds/correct.mp3');
-      
+      $scope.mostrarPreguntas = true;
 
       var ctrl = $scope.ctrl = {};
       ctrl.preguntaActual = 0;
       ctrl.respuestasCorrectas = 0;
       ctrl.respuestaSeleccionada = null;
       var baseDatos = new Firebase("https://triviaionic-114c5.firebaseio.com/");
-      $cordovaFile.createFile(cordova.file.dataDirectory, "pyr.txt", true);
+
+      //$cordovaFile.createFile(cordova.file.dataDirectory, "pyr.txt", true);
+      
       ctrl.siguiente = function (respuesta) {
+        
         ctrl.respuestaSeleccionada = respuesta;
         if (respuesta.active) {
           ctrl.respuestasCorrectas++;
@@ -79,17 +83,52 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
         var question = ctrl.preguntaActual;
         var selectedAnswer = ctrl.respuestaSeleccionada.name;
         var entrada = {pregunta: question, respuesta: selectedAnswer}
-        baseDatos.push(entrada);
-        
-        
-        $cordovaFile.writeFile(cordova.file.dataDirectory, "pyr.txt", JSON.stringify(entrada), true);
-        console.log(JSON.stringify($cordovaFile.readAsText(cordova.file.dataDirectory, "pyr.txt")));
+        baseDatos.push(entrada);        
+        //$cordovaFile.writeFile(cordova.file.dataDirectory, "pyr.txt", JSON.stringify(entrada), true);
+        //console.log(JSON.stringify($cordovaFile.readAsText(cordova.file.dataDirectory, "pyr.txt")));
+        $cordovaFile.checkFile(cordova.file.applicationStorageDirectory,
+          $scope.fileName).then(function(success){
+          console.log("successCF" + JSON.stringify(success));
+              $cordovaFile.writeExistingFile(cordova.file.applicationStorageDirectory,
+                $scope.fileName,entrada).then(function(successWF){
+              },function(errorWF){
+            })
+        },function(error){
+          console.log("Error CheckF" + JSON.stringify(error))
+          $cordovaFile.createFile(cordova.file.applicationStorageDirectory,
+            $scope.fileName,false).then(function(successCF){
+              console.log("Successs createF" + JSON.stringify(successCF))
+              $cordovaFile.writeExistingFile(cordova.file.applicationStorageDirectory,
+                $scope.fileName,entrada).then(function(successWF){
+                  console.log("Successs WF" + JSON.stringify(successWF))
+              },function(errorWF){
+                console.log("Error WF" + JSON.stringify(errorWF))
+              })
+            },function(errorCF){
+               console.log("Error CreateF" + JSON.stringify(successCF)) 
+            });
+          
+        })
+      }
+      $scope.leerArchivo = function(){
+        $cordovaFile.readAsText(cordova.file.applicationStorageDirectory,
+                $scope.fileName).then(function(success){
+                  console.log("SuccessRAT: " + JSON.stringify(success));
+                },function(error){
+                  console.log("errorRAT: " + JSON.stringify(error));
+                })
       }
       $scope.showAlert = function () {
         var alertPopup = $ionicPopup.alert({
           title: 'Trivia',
           template: 'Respuestas correctas: ' + ctrl.respuestasCorrectas
         });
+        //$state.go('tab.chat-detail');
+        $scope.mostrarPreguntas = false;
+      }
+
+      $scope.reiniciar = function(){
+
       }
       ctrl.preguntas = [{
         pregunta: 1,
@@ -230,7 +269,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
     }])
 
   .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
-    $scope.chat = Chats.get($stateParams.chatId);
+    
   })
 
   .controller('AcercaDeCtrl', function ($scope) {

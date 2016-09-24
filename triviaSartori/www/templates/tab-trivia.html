@@ -1,5 +1,6 @@
 <ion-view view-title="Trivia">
   <ion-content style="background-image: linear-gradient(#0e3038, #0b677d);">
+    <div ng-if="mostrarPreguntas">
     <img ng-src="{{ctrl.preguntas[ctrl.preguntaActual].img}}" style="width:200px; margin-top:15%; margin-left:20%;"><br>
     <label style="margin-left:2%;">{{ctrl.preguntas[ctrl.preguntaActual].descripcionPregunta}}</label><br><br>
     <div style="text-align:center;">
@@ -8,5 +9,9 @@
           ng-click="ctrl.siguiente(respuesta)">{{respuesta.name}}</button><br><br>
       </div>
     </div>
+  </div>
+  <div ng-if="!mostrarPreguntas">
+    <button ng-click="leerArchivo()">Leer Archivo</button>
+  </div>
   </ion-content>
 </ion-view>
