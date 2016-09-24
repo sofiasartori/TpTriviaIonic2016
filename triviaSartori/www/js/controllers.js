@@ -52,7 +52,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       $scope.remove = function(chat) {
         Chats.remove(chat);
       };*/
-      $scope.fileName = 'data2.json'
+      $scope.fileName = 'data0.json'
       $cordovaNativeAudio.preloadSimple('inc', 'sounds/wrong.mp3');
       $cordovaNativeAudio.preloadSimple('corr', 'sounds/correct.mp3');
       $scope.mostrarPreguntas = true;
@@ -90,7 +90,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
           $scope.fileName).then(function(success){
           console.log("successCF" + JSON.stringify(success));
               $cordovaFile.writeExistingFile(cordova.file.applicationStorageDirectory,
-                $scope.fileName,entrada).then(function(successWF){
+                $scope.fileName,JSON.stringify(entrada)+",").then(function(successWF){
               },function(errorWF){
             })
         },function(error){
@@ -99,7 +99,7 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
             $scope.fileName,false).then(function(successCF){
               console.log("Successs createF" + JSON.stringify(successCF))
               $cordovaFile.writeExistingFile(cordova.file.applicationStorageDirectory,
-                $scope.fileName,entrada).then(function(successWF){
+                $scope.fileName,JSON.stringify(entrada)+",").then(function(successWF){
                   console.log("Successs WF" + JSON.stringify(successWF))
               },function(errorWF){
                 console.log("Error WF" + JSON.stringify(errorWF))
@@ -110,11 +110,12 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
           
         })
       }
+      $scope.datosGuardados ="";
       $scope.leerArchivo = function(){
         $cordovaFile.readAsText(cordova.file.applicationStorageDirectory,
                 $scope.fileName).then(function(success){
-                  console.log("SuccessRAT: " + JSON.stringify(success));
-                },function(error){
+                  $scope.datosGuardados = success;
+                  },function(error){
                   console.log("errorRAT: " + JSON.stringify(error));
                 })
       }
@@ -128,7 +129,8 @@ angular.module('starter.controllers', ['ionic', 'ngCordova'])
       }
 
       $scope.reiniciar = function(){
-
+          $scope.mostrarPreguntas=true; 
+          ctrl.preguntaActual=0
       }
       ctrl.preguntas = [{
         pregunta: 1,
